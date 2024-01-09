@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CountryCapitals</string>
+    <string name="list_unavailable"> No countries are available</string>
+</resources>
