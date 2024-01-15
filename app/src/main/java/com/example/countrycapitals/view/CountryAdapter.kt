@@ -8,13 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.countrycapitals.model.Country
 import com.example.countrycapitals.R
 
-class CountryAdapter(private val countries: List<Country>) : RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
+class CountryAdapter : RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
+
+    private var countries: List<Country> = listOf()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
         val capitalTextView: TextView = itemView.findViewById(R.id.capitalTextView)
         val codeTextView: TextView = itemView.findViewById(R.id.codeTextView)
         val regionTextView: TextView = itemView.findViewById(R.id.regionTextView)
+    }
+
+    fun setItems(countries: List<Country>) {
+        this.countries = countries
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

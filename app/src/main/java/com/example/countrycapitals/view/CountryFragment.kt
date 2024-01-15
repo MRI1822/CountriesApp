@@ -39,15 +39,14 @@ class CountryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = CountryAdapter(emptyList())
-
+        adapter = CountryAdapter()
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
+        recyclerView.adapter?.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         viewModel.countries.observe(viewLifecycleOwner, Observer {
-            adapter = CountryAdapter(it)
-            recyclerView.adapter = adapter
+            adapter.setItems(it)
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer { error ->
